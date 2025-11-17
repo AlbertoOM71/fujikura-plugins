@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/services.xsd">
+    <description>Planning Services</description>
+    <vendor></vendor>
+    <version>1.0</version>
+
+    <!-- Calendar -->
+    <service name="getCalendarYearData" engine="java"
+        location="org.apache.ofbiz.planning.calendar.CalendarServices"
+        invoke="getCalendarYearData">
+        <description>Get calendar data and calculate working days for a year</description>
+        <attribute name="calendarId" type="String" mode="IN" optional="true"/>
+        <attribute name="year" type="Integer" mode="IN" optional="true"/>
+        <attribute name="calendarList" type="java.util.List" mode="OUT"/>
+        <attribute name="yearCalendar" type="java.util.Map" mode="OUT"/>
+        <attribute name="selectedCalendarId" type="String" mode="OUT"/>
+        <attribute name="selectedYear" type="Integer" mode="OUT"/>
+    </service>
+
+    <!-- Machine -->
+    <service name="searchMachinery" engine="java"
+             location="org.apache.ofbiz.planning.machinery.MachineryServices"
+             invoke="searchMachinery">
+        <description>Search machinery based on multiple criteria</description>
+        <attribute name="facilityName" type="String" mode="IN" optional="true"/>
+        <attribute name="machineId" type="String" mode="IN" optional="true"/>
+        <attribute name="fixedAssetId" type="String" mode="IN" optional="true"/>
+        <attribute name="name" type="String" mode="IN" optional="true"/>
+        <attribute name="machineTypeId" type="String" mode="IN" optional="true"/>
+        <attribute name="machineryList" type="List" mode="OUT"/>
+    </service>
+    
+    <service name="getMachineryReferenceData" engine="java"
+	         location="org.apache.ofbiz.planning.machinery.MachineryServices"
+	         invoke="getMachineryReferenceData">
+	    <attribute name="facilities" type="List" mode="OUT"/>
+	    <attribute name="fixedAssetTypes" type="List" mode="OUT"/>
+	</service>
+    
+    <service name="srvCreateMachinery" engine="java"
+    	location="org.apache.ofbiz.planning.machinery.MachineryServices"
+         invoke="createMachinery">
+    
+    <description>Registers new machinery</description>
+    <attribute name="facilityName" type="String" mode="IN" optional="true"/>
+    <attribute name="machineId" type="String" mode="IN" optional="false"/>
+    <attribute name="fixedAssetId" type="String" mode="IN" optional="true"/>
+    <attribute name="name" type="String" mode="IN" optional="true"/>
+    <attribute name="machineTypeId" type="String" mode="IN" optional="true"/>
+    
+    <attribute name="machineryId" type="String" mode="OUT" optional="true"/>
+    <attribute name="successMessage" type="String" mode="OUT" optional="true"/>
+    <attribute name="errorMessage" type="String" mode="OUT" optional="true"/>
+	</service>
+
+    <service name="deleteMachinery" engine="java"
+	         location="org.apache.ofbiz.planning.machinery.MachineryServices"
+	         invoke="deleteMachinery"
+	         auth="false">
+	    <description>Mark machinery as deleted by setting end of life</description>
+	    <attribute name="fixedAssetId" type="String" mode="IN" optional="false"/>
+	</service>
+	
+    <service name="deleteFixedAsset" default-entity-name="FixedAsset" engine="entity-auto">
+        <description>Eliminar activo fijo</description>
+        <attribute-mode type="out" value="validate"/>
+        <auto-attributes include="pk" mode="out" optional="false"/>
+        <override name="fixedAssetId"/>
+    </service>
+    <!-- 
+    <service name="getFixedAssets"
+         engine="java"
+         location="org.apache.ofbiz.planning.service.FixedAssetServices"
+         invoke="getFixedAssets"
+         auth="true"/>
+     -->
+	
+    <!-- Planning Group -->
+    <service name="searchPlanningGroups" engine="java"
+             location="org.apache.ofbiz.planning.planninggroups.PlanningGroupServices"
+             invoke="searchPlanningGroups" auth="true">
+        <description>Search planning groups based on project, name, ID or description</description>
+
+        <attribute name="projectCategoryId" type="String" mode="IN" optional="true"/>
+        <attribute name="planningGroupId"   type="String" mode="IN" optional="true"/>
+        <attribute name="categoryName"      type="String" mode="IN" optional="true"/>
+        <attribute name="description"       type="String" mode="IN" optional="true"/>
+
+        <attribute name="planningGroupList" type="List" mode="OUT"/>
+    </service>
+
+    <service name="getPlanningGroupsReferenceData" engine="java"
+             location="org.apache.ofbiz.planning.planninggroups.PlanningGroupServices"
+             invoke="getPlanningGroupsReferenceData" auth="true">
+        <description>Provides reference data for Planning Groups screens</description>
+
+        <attribute name="projects" type="List" mode="OUT"/>
+        <attribute name="planningGroupTypes" type="List" mode="OUT"/>
+    </service>
+    
+</services>

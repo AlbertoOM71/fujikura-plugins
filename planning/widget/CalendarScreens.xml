@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://ofbiz.apache.org/Widget-Screen" 
+        xsi:schemaLocation="http://ofbiz.apache.org/Widget-Screen http://ofbiz.apache.org/dtds/widget-screen.xsd">
+
+    <screen name="scrCalendarMain">
+        <section>
+            <actions>
+            	<set field="headerItem" value="menu_Calendar"/>
+                <service service-name="getCalendarYearData"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="component://planning/widget/CommonScreens.xml">
+                    <decorator-section name="body">
+                    	<section>
+	                    	<widgets>
+	                    		<label text="${uiLabelMap.PlanningFilterCalendar}" style="h2"/>
+	                    		
+	                    		<decorator-screen name="FindScreenDecorator" location="component://common/widget/CommonScreens.xml">
+	                    		
+	                    			<!-- Formulario de búsqueda -->
+		                            <decorator-section name="search-options">
+		                            	<include-form name="CalendarFilterForm" location="component://planning/widget/CalendarForms.xml"/>
+		                            </decorator-section>
+		                            
+		                            <!-- Lista simple de resultados -->
+		                            <decorator-section name="search-results">
+		                            	<!-- Información cuando hay calendario seleccionado -->
+				                        <container style="panel">
+				                            <label text="Resumen del Calendario:" style="h3"/>
+				                            <label text="Calendarios disponibles en el sistema: ${calendarList.size()}"/>
+				                            <label text="Calendario seleccionado: ${selectedCalendarId}"/>
+				                            <label text="Año seleccionado: ${selectedYear}"/>
+				                            
+				                            <!-- Mostrar lista de calendarios disponibles -->
+				                            <label text="---" style="bold"/>
+				                            <label text="Calendarios encontrados:" style="bold"/>
+				                            <label text="1. SUPPLIER - Calendar used for Re-Order date calculation for bought product"/>
+				                            <label text="2. DEFAULT - Default calendar used when no specific calendar is defined"/>
+				                            <label text="3. DEMO_CALENDAR - Demo Workcenter Calendar"/>
+				                        </container>
+		                            </decorator-section>
+		                            
+	                    		</decorator-screen>
+	                    	</widgets>
+                    	</section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+</screens>

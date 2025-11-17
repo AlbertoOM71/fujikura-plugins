@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Keep only English language here because of OFBIZ-13095 -->
+
+<resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/ofbiz-properties.xsd">
+    <property key="PlanningApplication">
+        <value xml:lang="en">Planning Application</value>
+    </property>
+    <property key="PlanningCompanyName">
+        <value xml:lang="en">OFBiz: Planning</value>
+    </property>
+    <property key="PlanningCompanySubtitle">
+        <value xml:lang="en">Part of the Apache OFBiz Family of Open Source Software</value>
+    </property>
+    <property key="PlanningMenuCalendar">
+        <value xml:lang="en">Calendar</value>
+    </property>
+    <property key="PlanningMenuShiftConfig">
+        <value xml:lang="en">Shift Configuration</value>
+    </property>
+    <property key="PlanningMenuPlanningGroups">
+        <value xml:lang="en">Plannig Groups</value>
+    </property>
+    <property key="PlanningMenuAssignedRefs">
+        <value xml:lang="en">Assigned References</value>
+    </property>
+    <property key="PlanningMenuMachinery">
+        <value xml:lang="en">Machinery</value>
+    </property>
+    <property key="PlanningMenuDOHConf">
+        <value xml:lang="en">DOH Configuration</value>
+    </property>
+    <property key="PlanningMenuHourlyRates">
+        <value xml:lang="en">Hourly Rates</value>
+    </property>
+    <property key="PlanningMenuWeeklyPlanning">
+        <value xml:lang="en">Weekly Planning</value>
+    </property>
+    <property key="PlanningMenuDailyPlanning">
+        <value xml:lang="en">Daily Planning</value>
+    </property>
+
+    <property key="PlanningTitleMenuCalendar">
+        <value xml:lang="en">Calendar Managemen</value>
+    </property>
+    <property key="PlanningTitleMenuShiftConfig">
+        <value xml:lang="en">Work Shift Management</value>
+    </property>
+    <property key="PlanningTitleMenuPlanningGroups">
+        <value xml:lang="en">Plannig Groups Management</value>
+    </property>
+    <property key="PlanningTitleMenuAssignedRefs">
+        <value xml:lang="en">Assigned References Management</value>
+    </property>
+    <property key="PlanningTitleMenuMachinery">
+        <value xml:lang="en">Machinery Management</value>
+    </property>
+    <property key="PlanningTitleMenuDOHConf">
+        <value xml:lang="en">DOH Configuration Management</value>
+    </property>
+    <property key="PlanningTitleMenuHourlyRates">
+        <value xml:lang="en">Hourly Rates Management</value>
+    </property>
+    <property key="PlanningTitleMenuWeeklyPlanning">
+        <value xml:lang="en">Weekly Planning Management</value>
+    </property>
+    <property key="PlanningTitleMenuDailyPlanning">
+        <value xml:lang="en">Daily Planning Management</value>
+    </property>
+
+    <property key="PlanningViewPermissionError">
+        <value xml:lang="en">You are not allowed to view this page.</value>
+    </property>
+
+    <!-- Calendar -->
+    <property key="PlanningFilterCalendar">
+        <value xml:lang="en">Filter Calendar</value>
+    </property>
+    <property key="PlanningAnnualCalendar">
+        <value xml:lang="en">Annual Calendar</value>
+    </property>
+    <property key="PlanningWorkingDay">
+        <value xml:lang="en">Working Day</value>
+    </property>
+    <property key="PlanningNonWorkingDay">
+        <value xml:lang="en">Non Working Day</value>
+    </property>
+    <property key="CommonMonth">
+        <value xml:lang="en">Month</value>
+    </property>
+    <!-- Calendar -->
+    
+    <!-- Machinery -->
+    <property key="TooltipFacility">
+        <value xml:lang="en">Filtar por Facility</value>
+    </property>
+    <property key="TooltipMachine">
+        <value xml:lang="en">Filtar por Machine ID</value>
+    </property>
+    <property key="TooltipAsset">
+        <value xml:lang="en">Filtar por Asset ID</value>
+    </property>
+    <property key="TooltipName">
+        <value xml:lang="en">Filtar por Name</value>
+    </property>
+    <property key="TooltipMachineType">
+        <value xml:lang="en">Filtar por Machine Type</value>
+    </property>
+    <property key="TitleNewMachine">
+        <value xml:lang="en">New Machine</value>
+    </property>
+    <property key="BotonNewMachine">
+        <value xml:lang="en">New Machine</value>
+    </property>
+    <!-- Machinery -->
+
+	<!--  Comun -->
+    <property key="BotonAceptar">
+        <value xml:lang="en">Accept</value>
+    </property>
+    <property key="BotonBorrar">
+        <value xml:lang="en">Delete</value>
+    </property>
+    <property key="BotonBuscar">
+        <value xml:lang="en">Find</value>
+    </property>
+    <property key="BotonCancelar">
+        <value xml:lang="en">Cancel</value>
+    </property>
+    <property key="BotonGuardar">
+        <value xml:lang="en">Save</value>
+    </property>
+    <property key="BotonLimpiar">
+        <value xml:lang="en">Clean</value>
+    </property>
+    <property key="BotonVolver">
+        <value xml:lang="en">Return</value>
+    </property>
+    <!--  Comun -->
+</resource>

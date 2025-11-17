@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://ofbiz.apache.org/Widget-Screen" 
+        xsi:schemaLocation="http://ofbiz.apache.org/Widget-Screen http://ofbiz.apache.org/dtds/widget-screen.xsd">
+
+    <screen name="scrMachineryMain">
+        <section>
+            <actions>
+            	<set field="headerItem" value="menu_Machinery"/>
+                <service service-name="getMachineryReferenceData"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="component://planning/widget/CommonScreens.xml">
+                    <decorator-section name="body">
+                    	<section>
+	                    	<widgets>
+	                    		<label text="${uiLabelMap.PlanningTitleMenuMachinery}" style="h2"/>
+                            
+	                    		<decorator-screen name="FindScreenDecorator" location="component://common/widget/CommonScreens.xml">
+	                    			
+		                            <decorator-section name="menu-bar">
+		                            	<include-menu name="mnuMachineryTabBar" location="component://planning/widget/PlanningMenus.xml"/>
+		                            </decorator-section>
+	                    			
+		                            <!-- Formulario de búsqueda -->
+		                            <decorator-section name="search-options">
+		                            	<include-form name="frmSearchMachinery" location="component://planning/widget/MachineryForms.xml"/>
+		                            	<container style="button-bar">
+			                            	<include-form name="ResetForm" location="component://planning/widget/MachineryForms.xml"/>
+		                            	</container>
+		                            </decorator-section>
+		                            
+		                            <!-- Lista simple de resultados -->
+		                            <decorator-section name="search-results">
+		                            	<include-form name="frmListMachinery" location="component://planning/widget/MachineryForms.xml"/>
+		                            </decorator-section>
+		                            
+	                    		</decorator-screen>
+	                    	</widgets>
+                    	</section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="scrMachinerySearchResults">
+        <section>
+            <actions>
+            	<set field="headerItem" value="menu_Machinery"/>
+                <service service-name="searchMachinery"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="component://planning/widget/CommonScreens.xml">
+                    <decorator-section name="body">
+                    	<section>
+	                    	<widgets>
+	                    		<label text="${uiLabelMap.PlanningTitleMenuMachinery}" style="h2"/>
+	                            
+	                    		<decorator-screen name="FindScreenDecorator" location="component://common/widget/CommonScreens.xml">
+	                    			
+		                            <decorator-section name="menu-bar">
+		                            	<include-menu name="mnuMachineryTabBar" location="component://planning/widget/PlanningMenus.xml"/>
+		                            </decorator-section>
+	                    			
+		                            <!-- Formulario de búsqueda -->
+		                            <decorator-section name="search-options">
+		                            	<include-form name="frmSearchMachinery" location="component://planning/widget/MachineryForms.xml"/>
+		                            	<container style="button-bar">
+			                            	<include-form name="ResetForm" location="component://planning/widget/MachineryForms.xml"/>
+		                            	</container>
+		                            </decorator-section>
+		                            
+		                            <!-- Lista simple de resultados -->
+		                            <decorator-section name="search-results">
+		                            	<include-form name="frmListMachinery" location="component://planning/widget/MachineryForms.xml"/>
+		                            </decorator-section>
+		                            
+	                    		</decorator-screen>
+	                    	</widgets>
+                    	</section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+	<screen name="scrCreateMachinery">
+        <section>
+            <actions>
+            	<set field="headerItem" value="menu_Machinery"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="component://planning/widget/CommonScreens.xml">
+                    <decorator-section name="body">
+                    	<section>
+	                    	<widgets>
+	                    		<label text="${uiLabelMap.TitleNewMachine}" style="h2"/>
+	                    		<decorator-screen name="LookupDecorator" location="component://common/widget/CommonScreens.xml">
+	                    			
+		                            <!-- Formulario de búsqueda -->
+		                            <decorator-section name="search-options">
+		                            	<include-form name="frmCreateMachinery" location="component://planning/widget/MachineryForms.xml"/>
+		                            </decorator-section>
+		                            
+	                    		</decorator-screen>
+	              			</widgets>
+                    	</section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="deleteMachineryConfirmation">
+        <section>
+            <actions>
+                <set field="fixedAssetId" value="${parameters.fixedAssetId}"/>
+                <entity-one entity-name="FixedAsset" value-field="fixedAsset"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonDecorator" location="component://common/widget/CommonScreens.xml">
+                    <decorator-section name="body">
+                        <include-form name="DeleteMachineryConfirmation" location="component://planning/widget/MachineryForms.xml"/>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="deleteMachinery">
+        <section>
+            <actions>
+                <set field="fixedAssetId" value="${parameters.fixedAssetId}"/>
+                <service service-name="deleteFixedAsset">
+                    <field-map field-name="fixedAssetId" from-field="fixedAssetId"/>
+                </service>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonDecorator" location="component://common/widget/CommonScreens.xml">
+                    <decorator-section name="body">
+                        <label text="Máquina eliminada correctamente" style="success"/>
+                        <include-form name="frmListMachinery" location="component://planning/widget/MachineryForms.xml"/>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+</screens>

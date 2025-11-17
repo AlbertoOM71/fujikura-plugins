@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://ofbiz.apache.org/Widget-Screen" 
+        xsi:schemaLocation="http://ofbiz.apache.org/Widget-Screen http://ofbiz.apache.org/dtds/widget-screen.xsd">
+
+    <!-- PANTALLA PRINCIPAL -->
+    <screen name="main">
+        <section>
+            <actions>
+                <set field="headerItem" value="main"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="PlanningCommonDecorator" location="component://planning/widget/CommonScreens.xml">
+                    <decorator-section name="body">
+                        <label text="Módulo de Planificación" style="h2"/>
+                        <label text="Bienvenido al sistema de gestión de activos fijos"/>
+                        <container style="button-bar">
+                            <link target="CreateFixedAssetForm" text="Crear Activo Fijo" style="button"/>
+                            <link target="findFixedAssets" text="Buscar Activos Fijos" style="button"/>
+                        </container>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <!-- FORMULARIO DE CREACIÓN -->
+    <screen name="CreateFixedAssetForm">
+        <section>
+            <actions>
+                <set field="headerItem" value="main"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="PlanningCommonDecorator" location="component://planning/widget/CommonScreens.xml">
+                    <decorator-section name="body">
+                        <label text="Crear Nuevo Activo Fijo" style="h2"/>
+                        <include-form name="CreateFixedAssetForm" location="component://planning/widget/PlanningForms.xml"/>
+                        <link target="main" text="Cancelar"/>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <!-- CONFIRMACIÓN DE CREACIÓN -->
+    <screen name="FixedAssetCreated">
+        <section>
+            <actions>
+                <set field="headerItem" value="main"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="PlanningCommonDecorator" location="component://planning/widget/CommonScreens.xml">
+                    <decorator-section name="body">
+                        <label text="¡Activo Fijo Creado Exitosamente!" style="h2"/>
+                        <container style="button-bar">
+                            <link target="main" text="Volver al Inicio" style="button"/>
+                            <link target="CreateFixedAssetForm" text="Crear Otro Activo" style="button"/>
+                        </container>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <!-- LISTA DE ACTIVOS -->
+    <screen name="FixedAssetList">
+        <section>
+            <actions>
+                <set field="headerItem" value="main"/>
+                <!-- Obtener lista de activos -->
+                <entity-condition list="fixedAssets" entity-name="FixedAsset">
+                    <order-by field-name="fixedAssetName"/>
+                </entity-condition>
+            </actions>
+            <widgets>
+                <decorator-screen name="PlanningCommonDecorator" location="component://planning/widget/CommonScreens.xml">
+                    <decorator-section name="body">
+                        <label text="Lista de Activos Fijos" style="h2"/>
+                        <include-form name="FindFixedAssetForm" location="component://planning/widget/PlanningForms.xml"/>
+                        <label text="Total de activos: ${fixedAssets?size}"/>
+                        <link target="main" text="Volver al Inicio"/>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+</screens>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://ofbiz.apache.org/Widget-Form"
+       xsi:schemaLocation="http://ofbiz.apache.org/Widget-Form http://ofbiz.apache.org/dtds/widget-form.xsd">
+
+    <form name="frmSearchMachinery" type="single" target="ctrlMachinerySearch" default-entity-name="Machinery" separate-columns="true">
+        <field name="noConditionFind"><hidden value="Y"/></field>
+        <field name="viewSize"><hidden value="20"/></field>
+        <field name="viewIndex"><hidden value="0"/></field>
+        <field name="distinct"><hidden value="Y"/></field>
+        
+        <field name="facilityName" title="Facility" tooltip="${uiLabelMap.TooltipFacility}">
+        	<text-find ignore-case="true" size="20"/>
+        </field>
+        <field name="machineId" title="Machine ID" tooltip="${uiLabelMap.TooltipMachine}">
+            <text-find ignore-case="true" size="20"/>
+        </field>
+        <field name="fixedAssetId" title="Asset ID" tooltip="${uiLabelMap.TooltipAsset}">
+            <text-find ignore-case="true" size="20"/>
+        </field>
+        <field name="name" title="Name" tooltip="${uiLabelMap.TooltipName}">
+            <text-find ignore-case="true" size="20"/>
+        </field>
+        <field name="machineTypeId" title="Machine Type" tooltip="${uiLabelMap.TooltipMachineType}">
+            <text-find ignore-case="true" size="20"/>
+        </field>
+        
+        <!-- 
+        <field name="resetButton" title="⭕ ${uiLabelMap.BotonLimpiar}"><reset/></field>
+         -->
+
+        <field name="submitButton" title="${uiLabelMap.BotonBuscar}"><submit/></field>
+    </form>
+    
+    <!-- Formulario SOLO para Limpiar -->
+	<form name="ResetForm" type="single" target="searchMachinery">
+	    <field name="resetButton" title="⭕ ${uiLabelMap.BotonLimpiar}"><submit/></field>
+	</form>
+	
+    <form name="frmListMachinery" type="list" list-name="machineryList" 
+	      separate-columns="true"
+	      paginate="true" odd-row-style="alternate-row" 
+	      default-table-style="basic-table hover-bar">
+	    <field name="machineId" title="Machine ID">
+	    	<display default-value="Sin código"/>
+	    </field>
+	    <field name="assetId" title="Asset ID"><display/></field>
+	    <field name="name" title="Name"><display/></field>
+	    <field name="facilityName" title="Facility">
+	    	<display default-value="Sin ubicación"/>
+		</field>
+	    <field name="machineType" title="Machine Type">
+	    	<display default-value="Sin tipo"/>
+	    </field>
+        <field name="deleteButton" title="Acciones">
+            <hyperlink description="🗑️ Eliminar" 
+                    target="deleteMachineryConfirmation"
+                    tooltip="Eliminar esta máquina">
+                <parameter param-name="fixedAssetId" from-field="fixedAssetId"/>
+            </hyperlink>
+        </field>
+	</form>
+
+    <form name="frmCreateMachinery" type="single" target="crtlCreateMachinery" default-entity-name="Machinery" separate-columns="true">
+        <field name="noConditionFind"><hidden value="Y"/></field>
+        <field name="viewSize"><hidden value="20"/></field>
+        <field name="viewIndex"><hidden value="0"/></field>
+        <field name="distinct"><hidden value="Y"/></field>
+        
+        <field name="facilityName" title="Facility">
+            <text size="20"/>
+        </field>
+        <field name="machineId" title="Machine ID">
+            <text size="20"/>
+        </field>
+        <field name="fixedAssetId" title="Asset ID">
+            <text size="20"/>
+        </field>
+        <field name="name" title="Name">
+            <text size="20"/>
+        </field>
+        <field name="machineTypeId" title="Machine Type">
+            <text size="20"/>
+        </field>
+        
+        <!-- Botón Volver -->
+        <!-- 
+        <field name="backButton1" title="↩️ ${uiLabelMap.BotonVolver}1" widget-style="button">
+	        <submit button-type="button"/>
+	    </field>
+         -->
+	    
+	    <!-- Botón Guardar - usa target normal -->
+	    <field name="submitButton" title="💾 ${uiLabelMap.BotonGuardar}"><submit/></field>
+    </form>
+
+
+
+    <form name="DeleteMachineryConfirmation" type="single" target="deleteMachinery">
+        <alt-target target="frmListMachinery" url-mode="true"/>
+        
+        <field name="fixedAssetId"><hidden/></field>
+        
+        <field name="warningMessage" title="">
+            <display>
+                <property value="PlanningUiLabels" property="ConfirmDeleteMessage"/>
+            </display>
+        </field>
+        
+        <field name="assetInfo" title="Información del Activo">
+            <display entity-name="FixedAsset" description="${fixedAssetId} - ${fixedAssetName!}"/>
+        </field>
+        
+        <field name="submitButton" title="✔️ Confirmar Eliminación">
+            <submit button-type="button-safe"/>
+        </field>
+        
+        <field name="cancelButton" title="❌ Cancelar">
+            <hyperlink target="frmListMachinery" description="Volver sin eliminar"/>
+        </field>
+    </form>
+</forms>

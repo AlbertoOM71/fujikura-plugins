@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<menus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ofbiz.apache.org/Widget-Menu" xsi:schemaLocation="http://ofbiz.apache.org/Widget-Menu http://ofbiz.apache.org/dtds/widget-menu.xsd">
+    <menu name="MainAppBar" default-menu-item-name="main" id="app-navigation" type="simple" title="${uiLabelMap.PlanningApplication}"
+     default-selected-style="selected" menu-container-style="button-bar tab-bar" selected-menuitem-context-field-name="headerItem">
+
+        <menu-item name="menu_Calendar" title="${uiLabelMap.PlanningMenuCalendar}">
+			<link target="ctrlCalendarMain"/>
+        </menu-item>
+        
+        <menu-item name="menu_ShiftConfig" title="${uiLabelMap.PlanningMenuShiftConfig}">
+            <link target="ctrlShiftConfigMain"/>
+        </menu-item>
+        
+  		<menu-item name="menu_PlanningGroups" title="${uiLabelMap.PlanningMenuPlanningGroups}">
+            <link target="ctrlPlanningGroupsMain"/>
+        </menu-item>
+        
+        <menu-item name="menu_AssignedRefs" title="${uiLabelMap.PlanningMenuAssignedRefs}">
+			<link target="ctrlAssignedRefsMain"/>
+        </menu-item>
+        
+        <menu-item name="menu_Machinery" title="${uiLabelMap.PlanningMenuMachinery}">
+            <link target="ctrlMachineryMain"/>
+        </menu-item>
+        
+  		<menu-item name="menu_DOHConf" title="${uiLabelMap.PlanningMenuDOHConf}">
+            <link target="ctrlDOHConfMain"/>
+        </menu-item>
+        
+        <menu-item name="menu_HourlyRates" title="${uiLabelMap.PlanningMenuHourlyRates}">
+			<link target="ctrlHourlyRatesMain"/>
+        </menu-item>
+        
+        <menu-item name="menu_WeeklyPlanning" title="${uiLabelMap.PlanningMenuWeeklyPlanning}">
+            <link target="ctrlWeeklyPlanningMain"/>
+        </menu-item>
+        
+  		<menu-item name="menu_DailyPlanning" title="${uiLabelMap.PlanningMenuDailyPlanning}">
+            <link target="ctrlDailyPlanningMain"/>
+        </menu-item>
+        
+    </menu>
+    
+    <!-- ######## Menus Pantallas ######## -->
+    <menu name="mnuMachineryTabBar" menu-container-style="button-bar button-style-2" default-selected-style="selected">
+        <menu-item name="createMachineryScreen" title="➕ ${uiLabelMap.BotonNewMachine}" widget-style="buttontext create">
+            <link target="crtlCreateMachinery"/>
+    	</menu-item>
+   	</menu> 
+</menus>

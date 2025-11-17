@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://ofbiz.apache.org/Widget-Form"
+       xsi:schemaLocation="http://ofbiz.apache.org/Widget-Form http://ofbiz.apache.org/dtds/widget-form.xsd">
+
+    <!-- ============================================== -->
+    <!-- =========== SEARCH PLANNING GROUPS ============ -->
+    <!-- ============================================== -->
+    <form name="SearchPlanningGroupsForm"
+          type="single"
+          target="searchPlanningGroups"
+          default-entity-name="ProductCategory"
+          separate-columns="true">
+
+        <field name="noConditionFind"><hidden value="Y"/></field>
+        <field name="viewSize"><hidden value="20"/></field>
+        <field name="viewIndex"><hidden value="0"/></field>
+        <field name="distinct"><hidden value="Y"/></field>
+
+        <!-- PROJECT (PARENT CATEGORY) -->
+        <field name="projectCategoryId" title="Project">
+            <drop-down allow-empty="true">
+                <list-options 
+                    list-name="projects" 
+                    key-name="productCategoryId" 
+                    description="${categoryName}"/>
+            </drop-down>
+        </field>
+
+        <!-- PLANNING GROUP ID -->
+        <field name="planningGroupId" title="Planning Group ID">
+            <text size="20"/>
+        </field>
+
+        <!-- GROUP NAME -->
+        <field name="categoryName" title="Group Name">
+            <text size="30"/>
+        </field>
+
+        <!-- DESCRIPTION -->
+        <field name="description" title="Description">
+            <text size="40"/>
+        </field>
+
+        <field name="submitButton" title="Search">
+            <submit/>
+        </field>
+
+    </form>
+
+    <!-- ============================================== -->
+    <!-- ============ LIST PLANNING GROUPS ============ -->
+    <!-- ============================================== -->
+    <form name="ListPlanningGroups"
+          type="list"
+          list-name="planningGroupList"
+          default-entity-name="ProductCategory"
+          separate-columns="true"
+          paginate="true"
+          odd-row-style="alternate-row"
+          default-table-style="basic-table hover-bar">
+
+        <!-- PROJECT -->
+        <field name="projectName" title="Project">
+            <display/>
+        </field>
+
+        <!-- GROUP ID -->
+        <field name="productCategoryId" title="Planning Group ID">
+            <display/>
+        </field>
+
+        <!-- NAME -->
+        <field name="categoryName" title="Group Name">
+            <display/>
+        </field>
+
+        <!-- DESCRIPTION -->
+        <field name="description" title="Description">
+            <display/>
+        </field>
+
+    </form>
+
+</forms>

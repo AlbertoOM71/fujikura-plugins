@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://ofbiz.apache.org/Widget-Form" xsi:schemaLocation="http://ofbiz.apache.org/Widget-Form http://ofbiz.apache.org/dtds/widget-form.xsd">
+
+	<form name="frmFindprueba" type="single" target="menuCalendar" title="Find and list prueba"
+        header-row-style="header-row" default-table-style="basic-table">
+        <field name="noConditionFind"><hidden value="Y"/><!-- if this isn't there then with all fields empty no query will be done --></field>
+        <field name="pruebaId"><text-find ignore-case="true"/></field>
+        <field name="nombre"><text-find ignore-case="true"/></field>
+        <field name="descripcion"><text-find ignore-case="true"/></field>
+        <field name="searchButton" title="${uiLabelMap.CommonFind}" event="onClick" action="javascript: test('1','2');return false">                        
+        	<submit button-type="button"/>
+     	</field>
+    </form>
+    
+    <!-- FORMULARIO DE CREACIÓN CORREGIDO -->
+    <form name="CreateFixedAssetForm" type="single" target="createFixedAsset">
+        <field name="fixedAssetName">
+            <text size="30" maxlength="60"/>
+        </field>
+        <field name="fixedAssetTypeId">
+            <drop-down allow-empty="false">
+                <entity-options entity-name="FixedAssetType" key-field-name="fixedAssetTypeId">
+                    <entity-order-by field-name="description"/>
+                </entity-options>
+            </drop-down>
+        </field>
+        <field name="purchaseCost">
+            <text size="15" maxlength="20"/>
+        </field>
+        <field name="dateAcquired">
+            <date-time/>
+        </field>
+        <field name="partyId">
+            <drop-down allow-empty="true">
+                <!-- ✅ CORREGIDO: Usar partyId sin order-by problemático -->
+                <entity-options entity-name="Party" key-field-name="partyId"/>
+            </drop-down>
+        </field>
+        <field name="submitButton" title="Crear Activo">
+            <submit button-type="button"/>
+        </field>
+    </form>
+
+    <!-- FORMULARIO DE BÚSQUEDA -->
+    <form name="FindFixedAssetForm" type="list" list-name="fixedAssets" 
+          target="findFixedAsset">
+        <field name="noConditionFind">
+            <hidden value="Y"/>
+        </field>
+        <field name="fixedAssetId">
+            <text-find ignore-case="true"/>
+        </field>
+        <field name="fixedAssetName">
+            <text-find ignore-case="true"/>
+        </field>
+        <field name="fixedAssetTypeId">
+            <drop-down allow-empty="true">
+                <entity-options entity-name="FixedAssetType" key-field-name="fixedAssetTypeId"/>
+            </drop-down>
+        </field>
+    </form>
+</forms>

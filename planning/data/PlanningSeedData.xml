@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-engine-xml>
+    <!-- GoodIdentification Type para PLANT_TAG -->
+    <GoodIdentificationType goodIdentificationTypeId="PLANT_TAG" 
+                           description="Plant Identification Tag"/>
+    
+    <!-- Ejemplos de datos de prueba -->
+    <FixedAssetType fixedAssetTypeId="PRODUCTION_MACHINERY" 
+                   description="Production Machinery"/>
+    <FixedAssetType fixedAssetTypeId="INJECTION_MACHINE" 
+                   description="Injection Machine"/>
+    <FixedAssetType fixedAssetTypeId="CONTROL_BANK" 
+                   description="Control Bank"/>
+    <FixedAssetType fixedAssetTypeId="COUNTERPIECE" 
+                   description="Counterpiece"/>
+    
+    <!-- Ejemplo de Facility -->
+    <Facility facilityId="KENTIRA" facilityName="Kentira Plant"/>
+    
+    <!-- Ejemplos de Fixed Assets -->
+    <FixedAsset fixedAssetId="FA-102030" 
+               fixedAssetTypeId="PRODUCTION_MACHINERY"
+               fixedAssetName="Main Comyspr Det A"
+               facilityId="KENTIRA"/>
+    <FixedAsset fixedAssetId="FA-102031" 
+               fixedAssetTypeId="PRODUCTION_MACHINERY"
+               fixedAssetName="Secondary Comyspr" 
+               facilityId="KENTIRA"/>
+    
+    <!-- GoodIdentifications (PLANT_TAG) -->
+    <GoodIdentification goodIdentificationTypeId="PLANT_TAG" 
+                       idValue="CX_001" 
+                       fixedAssetId="FA-102030"/>
+    <GoodIdentification goodIdentificationTypeId="PLANT_TAG" 
+                       idValue="CX_002" 
+                       fixedAssetId="FA-102031"/>
+</entity-engine-xml>
