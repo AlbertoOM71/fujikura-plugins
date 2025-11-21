@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <entity-engine-xml>
+    
+    <!-- ============================================ -->
+    <!-- SEED DATA - Se carga SIEMPRE -->
+    <!-- ============================================ -->
+    
+    <!-- Tipo para Proyectos -->
+    <ProductCategoryType 
+        productCategoryTypeId="PROJECT" 
+        description="Project"
+        hasTable="N"
+        isInherited="N"/>
+    
+    <!-- Tipo para Grupos de Planificación -->
+    <ProductCategoryType 
+        productCategoryTypeId="PLANNING_GROUP" 
+        description="Planning Group"
+        hasTable="N"
+        isInherited="N"/>
 
 </entity-engine-xml>

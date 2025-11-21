@@ -1,180 +1,210 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <site-conf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns="http://ofbiz.apache.org/Site-Conf" xsi:schemaLocation="http://ofbiz.apache.org/Site-Conf http://ofbiz.apache.org/dtds/site-conf.xsd">
-    <!-- The controller elements that are common to all OFBiz components
-         can be found in the following xml file. A component can override the
-         elements found in the common-controller.xml file. -->
+        xmlns="http://ofbiz.apache.org/Site-Conf" 
+        xsi:schemaLocation="http://ofbiz.apache.org/Site-Conf http://ofbiz.apache.org/dtds/site-conf.xsd">
+    
     <include location="component://common/webcommon/WEB-INF/common-controller.xml"/>
-
+    
     <description>Planning Component Site Configuration File</description>
 
-	<!--  ################## request-map ################## -->
-	
-	<!-- Calendar -->
-	<request-map uri="ctrlCalendarMain">
+    <!--  ################## REQUEST-MAP ################## -->
+    
+    <!-- Main -->
+    <request-map uri="main">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="main"/>
+    </request-map>
+    
+    <!-- ==================== CALENDAR ==================== -->
+    
+    <request-map uri="ctrlCalendarMain">
         <security https="true" auth="true"/>
         <response name="success" type="view" value="vCalendarMain"/>
     </request-map>
-    <!-- 
-    <request-map uri="viewAnnualCalendar">
+    
+    <!-- ==================== SHIFT CONFIG ==================== -->
+    
+    <request-map uri="ctrlShiftConfigMain">
         <security https="true" auth="true"/>
-        <response name="success" type="view" value="viewAnnualCalendar"/>
+        <response name="success" type="view" value="vShiftConfigMain"/>
     </request-map>
-	-->
-	
-    <!-- ShiftConfig -->
-	<request-map uri="ctrlShiftConfigMain">
-	    <security https="true" auth="true"/>
-	    <response name="success" type="view" value="vShiftConfigMain"/>
-	</request-map>
-	
-    <!-- PlanningGroups -->
-	<request-map uri="ctrlPlanningGroupsMain">
-	    <security https="true" auth="true"/>
-	    <response name="success" type="view" value="vPlanningGroupsMain"/>
-	</request-map>
-	
-	
-	<!-- *** NUEVO: ejecución del servicio de búsqueda (igual que searchMachinery) *** -->
-	<request-map uri="searchPlanningGroups">
-		<security https="true" auth="true" />
-		<event type="service" invoke="searchPlanningGroups" />
-		<response name="success" type="view" value="vPlanningGroupsResults" />
-		<response name="error" type="view" value="vPlanningGroupsMain" />
-	</request-map>	
-	<!-- *** NUEVO: pantalla de búsqueda de Planning Groups (igual que machinerySearch) *** -->
-	<!-- 
-	<request-map uri="planningGroupsSearch">
-		<security https="true" auth="true" />
-		<response name="success" type="view" value="PlanningGroupsSearch" />
-	</request-map>
-	 -->
-	
-    <!-- AssignedRefs -->
-	<request-map uri="ctrlAssignedRefsMain">
-	    <security https="true" auth="true"/>
-	    <response name="success" type="view" value="vAssignedRefsMain"/>
-	</request-map>
-	
-    <!-- Machinery -->
-	<request-map uri="ctrlMachineryMain">
+    
+    <!-- ==================== PLANNING GROUPS ==================== -->
+    
+    <request-map uri="ctrlPlanningGroupsMain">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="vPlanningGroupsMain"/>
+    </request-map>
+    
+    <request-map uri="searchPlanningGroups">
+        <security https="true" auth="true"/>
+        <event type="service" invoke="searchPlanningGroups"/>
+        <response name="success" type="view" value="vPlanningGroupsResults"/>
+        <response name="error" type="view" value="vPlanningGroupsMain"/>
+    </request-map>
+    
+    <request-map uri="createPlanningGroup">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="vCreatePlanningGroup"/>
+    </request-map>
+    
+    <request-map uri="createPlanningGroupAction">
+        <security https="true" auth="true"/>
+        <event type="service" invoke="createPlanningGroup"/>
+        <response name="success" type="request-redirect" value="ctrlPlanningGroupsMain"/>
+        <response name="error" type="view" value="vCreatePlanningGroup"/>
+    </request-map>
+    
+    <request-map uri="editPlanningGroup">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="vEditPlanningGroup"/>
+    </request-map>
+    
+    <request-map uri="updatePlanningGroup">
+        <security https="true" auth="true"/>
+        <event type="service" invoke="updatePlanningGroup"/>
+        <response name="success" type="request-redirect" value="ctrlPlanningGroupsMain"/>
+        <response name="error" type="view" value="vEditPlanningGroup"/>
+    </request-map>
+    
+    <request-map uri="deletePlanningGroup">
+        <security https="true" auth="true"/>
+        <event type="service" invoke="deletePlanningGroup"/>
+        <response name="success" type="request-redirect" value="ctrlPlanningGroupsMain"/>
+        <response name="error" type="request-redirect" value="ctrlPlanningGroupsMain"/>
+    </request-map>
+    
+    <!-- ==================== ASSIGNED REFS ==================== -->
+    
+    <request-map uri="ctrlAssignedRefsMain">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="vAssignedRefsMain"/>
+    </request-map>
+    
+    <!-- ==================== MACHINERY ==================== -->
+    
+    <request-map uri="ctrlMachineryMain">
         <security https="true" auth="true"/>
         <response name="success" type="view" value="vMachineryMain"/>
     </request-map>
-
+    
     <request-map uri="ctrlMachinerySearch">
         <security https="true" auth="true"/>
         <event type="service" invoke="searchMachinery"/>
         <response name="success" type="view" value="vMachinerySearchResults"/>
-        <response name="error" type="view" value="machinerySearch"/>
+        <response name="error" type="view" value="vMachineryMain"/>
     </request-map>
-	
-	<request-map uri="crtlCreateMachinery">
+    
+    <request-map uri="ctrlCreateMachinery">
         <security https="true" auth="true"/>
         <response name="success" type="view" value="vMachineryCreate"/>
     </request-map>
-	
-	<request-map uri="deleteMachinery">
-	    <security https="true" auth="true"/>
-	    <event type="service" invoke="deleteMachinery"/>
-	    <response name="success" type="view" value="SearchMachineryResults"/>
-	    <response name="error" type="view" value="SearchMachineryResults"/>
-	</request-map>
-
-	<request-map uri="deleteMachineryConfirmation">
-		<security https="true" auth="true"/>
-		<response name="success" type="view" value="deleteMachineryConfirmation"/>
-	</request-map>
-
-	<request-map uri="deleteMachinery">
-		<security https="true" auth="true"/>
-		<response name="success" type="view" value="deleteMachinery"/>
-		<response name="error" type="view" value="deleteMachineryConfirmation"/>
-	</request-map>
-	
-    <!-- DOHConf -->
-	<request-map uri="ctrlDOHConfMain">
-	    <security https="true" auth="true"/>
-	    <response name="success" type="view" value="vDOHConfMain"/>
-	</request-map>
-	
-	<!-- HourlyRates -->
-	<request-map uri="ctrlHourlyRatesMain">
-	    <security https="true" auth="true"/>
-	    <response name="success" type="view" value="vHourlyRatesMain"/>
-	</request-map>
-	
-    <!-- WeeklyPlanning -->
-	<request-map uri="ctrlWeeklyPlanningMain">
-	    <security https="true" auth="true"/>
-	    <response name="success" type="view" value="vWeeklyPlanningMain"/>
-	</request-map>
-	
-	<!-- DailyPlanning -->
-	<request-map uri="ctrlDailyPlanningMain">
-	    <security https="true" auth="true"/>
-	    <response name="success" type="view" value="vDailyPlanningMain"/>
-	</request-map>
-	
-    <!-- Request Mappings -->
-    <request-map uri="main"><security https="true" auth="true"/><response name="success" type="view" value="main"/></request-map>
     
-	<!--  ################## view-map ################## -->
-	
-	<!-- Calendar -->
-	<view-map name="vCalendarMain" type="screen" page="component://planning/widget/CalendarScreens.xml#scrCalendarMain"/>
-	<!-- 
-    <view-map name="viewAnnualCalendar" type="screen" page="component://planning/widget/CalendarScreens.xml#viewAnnualCalendar"/>
-	-->
-
-	<!-- ShiftConfig -->
-	<view-map name="vShiftConfigMain" type="screen" page="component://planning/widget/planning/ShiftConfigScreen.xml#scrShiftConfigMain"/>
-
-	<!-- PlanningGroups -->
-	<view-map name="vPlanningGroupsMain" type="screen" page="component://planning/widget/PlanningGroupsScreen.xml#scrPlanningGroupsMain"/>
-
-
-
-	<view-map name="vPlanningGroupsResults"
-		type="screen"
-		page="component://planning/widget/PlanningGroupsScreen.xml#scrSearchPlanningGroupsResults" />
-	<!-- 
-	<view-map name="PlanningGroupsSearch"
-		type="screen"
-		page="component://planning/widget/PlanningGroupsScreen.xml#SearchPlanningGroups" />
-	 -->
-
-
-
-	<!-- AssignedRefs -->
-	<view-map name="vAssignedRefsMain" type="screen" page="component://planning/widget/planning/AssignedRefsScreen.xml#scrAssignedRefsMain"/>
-
-	<!-- Machinery -->
-	<view-map name="vMachineryMain" type="screen" page="component://planning/widget/MachineryScreens.xml#scrMachineryMain"/>
-    <view-map name="vMachinerySearchResults" type="screen" page="component://planning/widget/MachineryScreens.xml#scrMachinerySearchResults"/>
-    <view-map name="SearchMachineryResults" type="screen" page="component://planning/widget/MachineryScreens.xml#SearchMachineryResults"/>
-    <view-map name="vMachineryCreate" type="screen" page="component://planning/widget/MachineryScreens.xml#scrCreateMachinery"/>
+    <request-map uri="createMachineryAction">
+        <security https="true" auth="true"/>
+        <event type="service" invoke="srvCreateMachinery"/>
+        <response name="success" type="request-redirect" value="ctrlMachineryMain"/>
+        <response name="error" type="view" value="vMachineryCreate"/>
+    </request-map>
     
+    <request-map uri="editMachinery">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="vMachineryEdit"/>
+    </request-map>
     
-	<view-map name="deleteMachineryConfirmation" type="screen" 
-          page="component://planning/widget/MachineryScreens.xml#deleteMachineryConfirmation"/>
+    <request-map uri="deleteMachinery">
+        <security https="true" auth="true"/>
+        <event type="service" invoke="deleteMachinery"/>
+        <response name="success" type="request-redirect" value="ctrlMachineryMain"/>
+        <response name="error" type="request-redirect" value="ctrlMachineryMain"/>
+    </request-map>
+    
+    <request-map uri="deleteMachineryConfirmation">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="vDeleteMachineryConfirmation"/>
+    </request-map>
+    
+    <!-- ==================== DOH CONF ==================== -->
+    
+    <request-map uri="ctrlDOHConfMain">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="vDOHConfMain"/>
+    </request-map>
+    
+    <!-- ==================== HOURLY RATES ==================== -->
+    
+    <request-map uri="ctrlHourlyRatesMain">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="vHourlyRatesMain"/>
+    </request-map>
+    
+    <!-- ==================== WEEKLY PLANNING ==================== -->
+    
+    <request-map uri="ctrlWeeklyPlanningMain">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="vWeeklyPlanningMain"/>
+    </request-map>
+    
+    <!-- ==================== DAILY PLANNING ==================== -->
+    
+    <request-map uri="ctrlDailyPlanningMain">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="vDailyPlanningMain"/>
+    </request-map>
+    
+    <!--  ################## VIEW-MAP ################## -->
+    
+    <view-map name="main" type="screen" 
+              page="component://planning/widget/PlanningScreens.xml#main"/>
+    
+    <!-- Calendar -->
+    <view-map name="vCalendarMain" type="screen" 
+              page="component://planning/widget/CalendarScreens.xml#scrCalendarMain"/>
+    
+    <!-- Shift Config -->
+    <view-map name="vShiftConfigMain" type="screen" 
+              page="component://planning/widget/planning/ShiftConfigScreen.xml#scrShiftConfigMain"/>
+    
+    <!-- Planning Groups -->
+    <view-map name="vPlanningGroupsMain" type="screen" 
+              page="component://planning/widget/PlanningGroupsScreen.xml#scrPlanningGroupsMain"/>
+    <view-map name="vPlanningGroupsResults" type="screen" 
+              page="component://planning/widget/PlanningGroupsScreen.xml#scrSearchPlanningGroupsResults"/>
+    <view-map name="vCreatePlanningGroup" type="screen" 
+              page="component://planning/widget/PlanningGroupsScreen.xml#scrCreatePlanningGroup"/>
+    <view-map name="vEditPlanningGroup" type="screen" 
+              page="component://planning/widget/PlanningGroupsScreen.xml#scrEditPlanningGroup"/>
+    
+    <!-- Assigned Refs -->
+    <view-map name="vAssignedRefsMain" type="screen" 
+              page="component://planning/widget/planning/AssignedRefsScreen.xml#scrAssignedRefsMain"/>
+    
+    <!-- Machinery -->
+    <view-map name="vMachineryMain" type="screen" 
+              page="component://planning/widget/MachineryScreens.xml#scrMachineryMain"/>
+    <view-map name="vMachinerySearchResults" type="screen" 
+              page="component://planning/widget/MachineryScreens.xml#scrMachinerySearchResults"/>
+    <view-map name="vMachineryCreate" type="screen" 
+              page="component://planning/widget/MachineryScreens.xml#scrCreateMachinery"/>
+    <view-map name="vMachineryEdit" type="screen" 
+              page="component://planning/widget/MachineryScreens.xml#scrEditMachinery"/>
+    <view-map name="vDeleteMachineryConfirmation" type="screen" 
+              page="component://planning/widget/MachineryScreens.xml#scrDeleteMachineryConfirmation"/>
+    
+    <!-- DOH Conf -->
+    <view-map name="vDOHConfMain" type="screen" 
+              page="component://planning/widget/planning/DOHConfScreen.xml#scrDOHConfMain"/>
+    
+    <!-- Hourly Rates -->
+    <view-map name="vHourlyRatesMain" type="screen" 
+              page="component://planning/widget/planning/HourlyRatesScreen.xml#scrHourlyRatesMain"/>
+    
+    <!-- Weekly Planning -->
+    <view-map name="vWeeklyPlanningMain" type="screen" 
+              page="component://planning/widget/planning/WeeklyPlanningScreen.xml#scrWeeklyPlanningMain"/>
+    
+    <!-- Daily Planning -->
+    <view-map name="vDailyPlanningMain" type="screen" 
+              page="component://planning/widget/planning/DailyPlanningScreen.xml#scrDailyPlanningMain"/>
 
-	<view-map name="deleteMachinery" type="screen" 
-          page="component://planning/widget/MachineryScreens.xml#deleteMachinery"/>
-		  
-	<!-- DOHConf -->
-	<view-map name="vDOHConfMain" type="screen" page="component://planning/widget/planning/DOHConfScreen.xml#scrDOHConfMain"/>
-    
-	<!-- HourlyRates -->
-	<view-map name="vHourlyRatesMain" type="screen" page="component://planning/widget/planning/HourlyRatesScreen.xml#scrHourlyRatesMain"/>
-    
-	<!-- WeeklyPlanning -->
-	<view-map name="vWeeklyPlanningMain" type="screen" page="component://planning/widget/planning/WeeklyPlanningScreen.xml#scrWeeklyPlanningMain"/>
-    
-	<!-- DailyPlanning -->
-	<view-map name="vDailyPlanningMain" type="screen" page="component://planning/widget/planning/DailyPlanningScreen.xml#scrDailyPlanningMain"/>
-
-    <!-- View Mappings -->
-    <view-map name="main" type="screen" page="component://planning/widget/PlanningScreens.xml#main"/>
 </site-conf>

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/services.xsd">
     <description>Planning Services</description>
-    <vendor></vendor>
-    <version>1.0</version>
+
 
     <!-- Calendar -->
     <service name="getCalendarYearData" engine="java"
@@ -32,12 +30,13 @@
         <attribute name="machineryList" type="List" mode="OUT"/>
     </service>
     
-    <service name="getMachineryReferenceData" engine="java"
-	         location="org.apache.ofbiz.planning.machinery.MachineryServices"
-	         invoke="getMachineryReferenceData">
-	    <attribute name="facilities" type="List" mode="OUT"/>
-	    <attribute name="fixedAssetTypes" type="List" mode="OUT"/>
-	</service>
+<service name="getMachineryReferenceData" engine="java"
+         location="org.apache.ofbiz.planning.machinery.MachineryServices"
+         invoke="getMachineryReferenceData">
+    <description>Get reference data for machinery</description>
+    <attribute name="facilities" type="List" mode="OUT" optional="true"/>
+    <attribute name="fixedAssetTypes" type="List" mode="OUT" optional="true"/>
+</service>
     
     <service name="srvCreateMachinery" engine="java"
     	location="org.apache.ofbiz.planning.machinery.MachineryServices"
@@ -69,35 +68,62 @@
         <auto-attributes include="pk" mode="out" optional="false"/>
         <override name="fixedAssetId"/>
     </service>
-    <!-- 
-    <service name="getFixedAssets"
-         engine="java"
-         location="org.apache.ofbiz.planning.service.FixedAssetServices"
-         invoke="getFixedAssets"
-         auth="true"/>
-     -->
 	
-    <!-- Planning Group -->
-    <service name="searchPlanningGroups" engine="java"
-             location="org.apache.ofbiz.planning.planninggroups.PlanningGroupServices"
-             invoke="searchPlanningGroups" auth="true">
-        <description>Search planning groups based on project, name, ID or description</description>
-
-        <attribute name="projectCategoryId" type="String" mode="IN" optional="true"/>
-        <attribute name="planningGroupId"   type="String" mode="IN" optional="true"/>
-        <attribute name="categoryName"      type="String" mode="IN" optional="true"/>
-        <attribute name="description"       type="String" mode="IN" optional="true"/>
-
-        <attribute name="planningGroupList" type="List" mode="OUT"/>
-    </service>
-
     <service name="getPlanningGroupsReferenceData" engine="java"
              location="org.apache.ofbiz.planning.planninggroups.PlanningGroupServices"
              invoke="getPlanningGroupsReferenceData" auth="true">
-        <description>Provides reference data for Planning Groups screens</description>
-
-        <attribute name="projects" type="List" mode="OUT"/>
-        <attribute name="planningGroupTypes" type="List" mode="OUT"/>
+        <description>Get reference data</description>
+        <attribute name="projects" type="List" mode="OUT" optional="true"/>
+        <attribute name="facilities" type="List" mode="OUT" optional="true"/>
+        <attribute name="planningGroupTypes" type="List" mode="OUT" optional="true"/>
     </service>
-    
+
+    <service name="searchPlanningGroups" engine="java"
+             location="org.apache.ofbiz.planning.planninggroups.PlanningGroupServices"
+             invoke="searchPlanningGroups" auth="true">
+        <attribute name="facilityId" type="String" mode="IN" optional="true"/>
+        <attribute name="projectCategoryId" type="String" mode="IN" optional="true"/>
+        <attribute name="planningGroupId" type="String" mode="IN" optional="true"/>
+        <attribute name="categoryName" type="String" mode="IN" optional="true"/>
+        <attribute name="description" type="String" mode="IN" optional="true"/>
+        <attribute name="planningGroupList" type="List" mode="OUT" optional="true"/>
+    </service>
+
+    <service name="createPlanningGroup" engine="java"
+             location="org.apache.ofbiz.planning.planninggroups.PlanningGroupServices"
+             invoke="createPlanningGroup" auth="true">
+        <attribute name="productCategoryId" type="String" mode="IN" optional="false"/>
+        <attribute name="categoryName" type="String" mode="IN" optional="false"/>
+        <attribute name="description" type="String" mode="IN" optional="true"/>
+        <attribute name="primaryParentCategoryId" type="String" mode="IN" optional="false"/>
+        <attribute name="facilityId" type="String" mode="IN" optional="false"/>
+        <attribute name="productCategoryId" type="String" mode="OUT" optional="true"/>
+    </service>
+
+    <service name="updatePlanningGroup" engine="java"
+             location="org.apache.ofbiz.planning.planninggroups.PlanningGroupServices"
+             invoke="updatePlanningGroup" auth="true">
+        <attribute name="productCategoryId" type="String" mode="IN" optional="false"/>
+        <attribute name="categoryName" type="String" mode="IN" optional="true"/>
+        <attribute name="description" type="String" mode="IN" optional="true"/>
+        <attribute name="primaryParentCategoryId" type="String" mode="IN" optional="true"/>
+        <attribute name="facilityId" type="String" mode="IN" optional="true"/>
+        <attribute name="productCategoryId" type="String" mode="OUT" optional="true"/>
+    </service>
+
+    <service name="deletePlanningGroup" engine="java"
+             location="org.apache.ofbiz.planning.planninggroups.PlanningGroupServices"
+             invoke="deletePlanningGroup" auth="true">
+        <attribute name="productCategoryId" type="String" mode="IN" optional="false"/>
+        <attribute name="productCategoryId" type="String" mode="OUT" optional="true"/>
+    </service>
+
+    <service name="getPlanningGroup" engine="java"
+             location="org.apache.ofbiz.planning.planninggroups.PlanningGroupServices"
+             invoke="getPlanningGroup" auth="true">
+        <attribute name="productCategoryId" type="String" mode="IN" optional="false"/>
+        <attribute name="planningGroup" type="org.apache.ofbiz.entity.GenericValue" mode="OUT" optional="true"/>
+        <attribute name="facilityId" type="String" mode="OUT" optional="true"/>
+    </service>
+
 </services>

@@ -3,81 +3,142 @@
        xmlns="http://ofbiz.apache.org/Widget-Form"
        xsi:schemaLocation="http://ofbiz.apache.org/Widget-Form http://ofbiz.apache.org/dtds/widget-form.xsd">
 
-    <!-- ============================================== -->
-    <!-- =========== SEARCH PLANNING GROUPS ============ -->
-    <!-- ============================================== -->
+    <!-- FORMULARIO DE BÚSQUEDA -->
     <form name="SearchPlanningGroupsForm"
           type="single"
           target="searchPlanningGroups"
-          default-entity-name="ProductCategory"
-          separate-columns="true">
+          default-entity-name="ProductCategory">
 
         <field name="noConditionFind"><hidden value="Y"/></field>
-        <field name="viewSize"><hidden value="20"/></field>
-        <field name="viewIndex"><hidden value="0"/></field>
-        <field name="distinct"><hidden value="Y"/></field>
 
-        <!-- PROJECT (PARENT CATEGORY) -->
-        <field name="projectCategoryId" title="Project">
+        <field name="facilityId" title="Facility">
             <drop-down allow-empty="true">
-                <list-options 
-                    list-name="projects" 
-                    key-name="productCategoryId" 
-                    description="${categoryName}"/>
+                <option key="" description="All Facilities"/>
+                <list-options list-name="facilities" key-name="facilityId" description="${facilityName}"/>
             </drop-down>
         </field>
 
-        <!-- PLANNING GROUP ID -->
-        <field name="planningGroupId" title="Planning Group ID">
-            <text size="20"/>
+        <field name="projectCategoryId" title="Project">
+            <drop-down allow-empty="true">
+                <option key="" description="All Projects"/>
+                <list-options list-name="projects" key-name="productCategoryId" description="${categoryName}"/>
+            </drop-down>
         </field>
 
-        <!-- GROUP NAME -->
-        <field name="categoryName" title="Group Name">
-            <text size="30"/>
+        <field name="planningGroupId" title="Planning Group">
+            <drop-down allow-empty="true">
+                <option key="" description="All Planning Groups"/>
+            </drop-down>
         </field>
 
-        <!-- DESCRIPTION -->
-        <field name="description" title="Description">
-            <text size="40"/>
-        </field>
-
-        <field name="submitButton" title="Search">
-            <submit/>
+        <field name="submitButton" title="Find">
+            <submit button-type="button"/>
         </field>
 
     </form>
 
-    <!-- ============================================== -->
-    <!-- ============ LIST PLANNING GROUPS ============ -->
-    <!-- ============================================== -->
+    <!-- LISTA DE RESULTADOS -->
     <form name="ListPlanningGroups"
           type="list"
           list-name="planningGroupList"
-          default-entity-name="ProductCategory"
-          separate-columns="true"
           paginate="true"
           odd-row-style="alternate-row"
           default-table-style="basic-table hover-bar">
 
-        <!-- PROJECT -->
+        <field name="facilityName" title="Facility">
+            <display/>
+        </field>
+
         <field name="projectName" title="Project">
             <display/>
         </field>
 
-        <!-- GROUP ID -->
+        <field name="categoryName" title="Planning Group">
+            <hyperlink target="editPlanningGroup" description="${categoryName}">
+                <parameter param-name="productCategoryId"/>
+            </hyperlink>
+        </field>
+
+        <field name="actions" title="Actions">
+            <hyperlink target="deletePlanningGroup" 
+                       description="Delete"
+                       confirmation-message="Are you sure you want to delete this planning group?">
+                <parameter param-name="productCategoryId"/>
+            </hyperlink>
+        </field>
+
+    </form>
+
+    <!-- FORMULARIO DE CREACIÓN -->
+    <form name="CreatePlanningGroupForm"
+          type="single"
+          target="createPlanningGroupAction"
+          default-entity-name="ProductCategory">
+
+        <field name="productCategoryId" title="Planning Group ID *">
+            <text size="20" maxlength="20"/>
+        </field>
+
+        <field name="categoryName" title="Planning Group Name *">
+            <text size="40" maxlength="100"/>
+        </field>
+
+        <field name="description" title="Description">
+            <textarea cols="60" rows="3"/>
+        </field>
+
+        <field name="primaryParentCategoryId" title="Project *">
+            <drop-down allow-empty="false">
+                <list-options list-name="projects" key-name="productCategoryId" description="${categoryName}"/>
+            </drop-down>
+        </field>
+
+        <field name="facilityId" title="Facility *">
+            <drop-down allow-empty="false">
+                <list-options list-name="facilities" key-name="facilityId" description="${facilityName}"/>
+            </drop-down>
+        </field>
+
+        <field name="submitButton" title="Create Planning Group">
+            <submit button-type="button"/>
+        </field>
+
+    </form>
+
+    <!-- FORMULARIO DE EDICIÓN -->
+    <form name="EditPlanningGroupForm"
+          type="single"
+          target="updatePlanningGroup"
+          default-entity-name="ProductCategory"
+          default-map-name="planningGroup">
+
         <field name="productCategoryId" title="Planning Group ID">
             <display/>
         </field>
+        <field name="productCategoryId"><hidden/></field>
 
-        <!-- NAME -->
-        <field name="categoryName" title="Group Name">
-            <display/>
+        <field name="categoryName" title="Planning Group Name *">
+            <text size="40" maxlength="100"/>
         </field>
 
-        <!-- DESCRIPTION -->
         <field name="description" title="Description">
-            <display/>
+            <textarea cols="60" rows="3"/>
+        </field>
+
+        <field name="primaryParentCategoryId" title="Project *">
+            <drop-down allow-empty="false">
+                <list-options list-name="projects" key-name="productCategoryId" description="${categoryName}"/>
+            </drop-down>
+        </field>
+
+        <field name="facilityId" title="Facility *">
+            <drop-down allow-empty="false" current="selected">
+                <list-options list-name="facilities" key-name="facilityId" description="${facilityName}"/>
+            </drop-down>
+        </field>
+
+        <field name="submitButton" title="Update Planning Group">
+            <submit button-type="button"/>
         </field>
 
     </form>

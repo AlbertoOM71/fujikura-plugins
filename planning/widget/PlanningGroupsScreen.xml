@@ -3,82 +3,115 @@
         xmlns="http://ofbiz.apache.org/Widget-Screen" 
         xsi:schemaLocation="http://ofbiz.apache.org/Widget-Screen http://ofbiz.apache.org/dtds/widget-screen.xsd">
 
-    <!-- ========================================================= -->
-    <!-- ===============  SEARCH PLANNING GROUPS  ================ -->
-    <!-- ========================================================= -->
+    <!-- PANTALLA PRINCIPAL -->
     <screen name="scrPlanningGroupsMain">
         <section>
-
             <actions>
-                <!-- Cargar datos de referencia (igual que Machinery) -->
                 <service service-name="getPlanningGroupsReferenceData"/>
                 <property-map resource="PlanningUiLabels" map-name="uiLabelMap" global="true"/>
             </actions>
-
             <widgets>
-                <decorator-screen name="main-decorator"
-                                  location="component://planning/widget/CommonScreens.xml">
+                <decorator-screen name="main-decorator" location="component://planning/widget/CommonScreens.xml">
                     <decorator-section name="body">
-
                         <container style="main-container">
-
-                            <label text="${uiLabelMap.PlanningTitleMenuPlanningGroups}" style="h2"/>
-
-                            <!-- Formulario de búsqueda -->
+                            <label text="Planning Group Management" style="h1"/>
+                            
                             <include-form name="SearchPlanningGroupsForm"
                                           location="component://planning/widget/PlanningGroupsForms.xml"/>
-
-                            <!-- Lista sin resultados aún -->
+                            
+                            <container style="button-bar">
+                                <link target="createPlanningGroup" text="New Planning Group" style="buttontext create"/>
+                            </container>
+                            
                             <include-form name="ListPlanningGroups"
                                           location="component://planning/widget/PlanningGroupsForms.xml"/>
-
                         </container>
-
                     </decorator-section>
                 </decorator-screen>
             </widgets>
-
         </section>
     </screen>
 
-
-    <!-- ======================================================== -->
-    <!-- ===========  SEARCH PLANNING GROUPS RESULTS  =========== -->
-    <!-- ======================================================== -->
+    <!-- PANTALLA DE RESULTADOS DE BÚSQUEDA -->
     <screen name="scrSearchPlanningGroupsResults">
         <section>
-
             <actions>
-                <!-- Ejecutar servicio principal -->
                 <service service-name="searchPlanningGroups"/>
-                <!-- Datos de referencia -->
                 <service service-name="getPlanningGroupsReferenceData"/>
                 <property-map resource="PlanningUiLabels" map-name="uiLabelMap" global="true"/>
             </actions>
-
             <widgets>
-                <decorator-screen name="main-decorator"
-                                  location="component://planning/widget/CommonScreens.xml">
+                <decorator-screen name="main-decorator" location="component://planning/widget/CommonScreens.xml">
                     <decorator-section name="body">
-
                         <container style="main-container">
-
-                            <label text="${uiLabelMap.PlanningTitleMenuPlanningGroups}" style="h2"/>
-
-                            <!-- Repetimos formulario para permitir nueva búsqueda -->
+                            <label text="Planning Group Management" style="h1"/>
+                            
                             <include-form name="SearchPlanningGroupsForm"
                                           location="component://planning/widget/PlanningGroupsForms.xml"/>
-
-                            <!-- Ahora sí mostramos la lista con planningGroupList -->
+                            
+                            <container style="button-bar">
+                                <link target="createPlanningGroup" text="New Planning Group" style="buttontext create"/>
+                            </container>
+                            
                             <include-form name="ListPlanningGroups"
                                           location="component://planning/widget/PlanningGroupsForms.xml"/>
-
                         </container>
-
                     </decorator-section>
                 </decorator-screen>
             </widgets>
+        </section>
+    </screen>
 
+    <!-- PANTALLA DE CREACIÓN -->
+    <screen name="scrCreatePlanningGroup">
+        <section>
+            <actions>
+                <service service-name="getPlanningGroupsReferenceData"/>
+                <property-map resource="PlanningUiLabels" map-name="uiLabelMap" global="true"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="component://planning/widget/CommonScreens.xml">
+                    <decorator-section name="body">
+                        <container style="main-container">
+                            <label text="Create New Planning Group" style="h1"/>
+                            
+                            <container style="button-bar">
+                                <link target="ctrlPlanningGroupsMain" text="Back to Planning Groups" style="buttontext"/>
+                            </container>
+                            
+                            <include-form name="CreatePlanningGroupForm"
+                                          location="component://planning/widget/PlanningGroupsForms.xml"/>
+                        </container>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <!-- PANTALLA DE EDICIÓN -->
+    <screen name="scrEditPlanningGroup">
+        <section>
+            <actions>
+                <service service-name="getPlanningGroup"/>
+                <service service-name="getPlanningGroupsReferenceData"/>
+                <property-map resource="PlanningUiLabels" map-name="uiLabelMap" global="true"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="component://planning/widget/CommonScreens.xml">
+                    <decorator-section name="body">
+                        <container style="main-container">
+                            <label text="Edit Planning Group: ${planningGroup.categoryName}" style="h1"/>
+                            
+                            <container style="button-bar">
+                                <link target="ctrlPlanningGroupsMain" text="Back to Planning Groups" style="buttontext"/>
+                            </container>
+                            
+                            <include-form name="EditPlanningGroupForm"
+                                          location="component://planning/widget/PlanningGroupsForms.xml"/>
+                        </container>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
         </section>
     </screen>
 

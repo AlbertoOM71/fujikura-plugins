@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-engine-xml>
+    
+    <!-- ============================================ -->
+    <!-- TIPOS DE CATEGORÍA -->
+    <!-- ============================================ -->
+    
+    <!-- Tipo para Proyectos -->
+    <ProductCategoryType 
+        productCategoryTypeId="PROJECT" 
+        description="Project"
+        hasTable="N"
+        isInherited="N"/>
+    
+    <!-- Tipo para Grupos de Planificación -->
+    <ProductCategoryType 
+        productCategoryTypeId="PLANNING_GROUP" 
+        description="Planning Group"
+        hasTable="N"
+        isInherited="N"/>
+    
+    <!-- ============================================ -->
+    <!-- FACILITIES -->
+    <!-- ============================================ -->
+    
+    <Facility 
+        facilityId="KENITRA" 
+        facilityTypeId="PLANT"
+        facilityName="Kenitra"
+        description="Kenitra Manufacturing Plant - Morocco"
+        ownerPartyId="Company"/>
+    
+    <Facility 
+        facilityId="MALAGA" 
+        facilityTypeId="PLANT"
+        facilityName="Málaga"
+        description="Málaga Manufacturing Plant - Spain"
+        ownerPartyId="Company"/>
+    
+    <Facility 
+        facilityId="BARCELONA" 
+        facilityTypeId="PLANT"
+        facilityName="Barcelona"
+        description="Barcelona Manufacturing Plant - Spain"
+        ownerPartyId="Company"/>
+    
+    <Facility 
+        facilityId="PAMPLONA" 
+        facilityTypeId="PLANT"
+        facilityName="Pamplona"
+        description="Pamplona Manufacturing Plant - Spain"
+        ownerPartyId="Company"/>
+    
+    <Facility 
+        facilityId="VIGO" 
+        facilityTypeId="PLANT"
+        facilityName="Vigo"
+        description="Vigo Manufacturing Plant - Spain"
+        ownerPartyId="Company"/>
+    
+    <!-- ============================================ -->
+    <!-- PROYECTOS (ProductCategory tipo PROJECT) -->
+    <!-- ============================================ -->
+    
+    <!-- Porsche Projects -->
+    <ProductCategory 
+        productCategoryId="CAYENNE-AUTO" 
+        productCategoryTypeId="PROJECT"
+        categoryName="Cayenne Autarkets"
+        description="Porsche Cayenne Autarkets Project"/>
+    
+    <ProductCategory 
+        productCategoryId="MACAN-AUTO" 
+        productCategoryTypeId="PROJECT"
+        categoryName="Macan Autarkets"
+        description="Porsche Macan Autarkets Project"/>
+    
+    <ProductCategory 
+        productCategoryId="PANAMERA-AUTO" 
+        productCategoryTypeId="PROJECT"
+        categoryName="Panamera Autarkets"
+        description="Porsche Panamera Autarkets Project"/>
+    
+    <!-- Audi Projects -->
+    <ProductCategory 
+        productCategoryId="AUDI-D5-AUTO" 
+        productCategoryTypeId="PROJECT"
+        categoryName="Audi D5 Autarkets"
+        description="Audi D5 Autarkets Project"/>
+    
+    <ProductCategory 
+        productCategoryId="AUDI-Q7-AUTO" 
+        productCategoryTypeId="PROJECT"
+        categoryName="Audi Q7 Autarkets"
+        description="Audi Q7 Autarkets Project"/>
+    
+    <!-- BMW Projects -->
+    <ProductCategory 
+        productCategoryId="BMW-X5-AUTO" 
+        productCategoryTypeId="PROJECT"
+        categoryName="BMW X5 Autarkets"
+        description="BMW X5 Autarkets Project"/>
+    
+    <ProductCategory 
+        productCategoryId="BMW-SERIE3-AUTO" 
+        productCategoryTypeId="PROJECT"
+        categoryName="BMW Serie 3 Autarkets"
+        description="BMW Serie 3 Autarkets Project"/>
+    
+    <!-- Mercedes Projects -->
+    <ProductCategory 
+        productCategoryId="MERCEDES-GLE-AUTO" 
+        productCategoryTypeId="PROJECT"
+        categoryName="Mercedes GLE Autarkets"
+        description="Mercedes GLE Autarkets Project"/>
+    
+    <!-- ============================================ -->
+    <!-- GRUPOS DE PLANIFICACIÓN - CAYENNE -->
+    <!-- ============================================ -->
+    
+    <ProductCategory 
+        productCategoryId="CY-FD" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="CAYENNE-AUTO"
+        categoryName="Cayenne Front Doors"
+        description="Planning group for Cayenne front doors"/>
+    <ProductCategoryAttribute 
+        productCategoryId="CY-FD"
+        attrName="FACILITY_ID"
+        attrValue="KENITRA"/>
+    
+    <ProductCategory 
+        productCategoryId="CY-RD" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="CAYENNE-AUTO"
+        categoryName="Cayenne Rear Doors"
+        description="Planning group for Cayenne rear doors"/>
+    <ProductCategoryAttribute 
+        productCategoryId="CY-RD"
+        attrName="FACILITY_ID"
+        attrValue="KENITRA"/>
+    
+    <ProductCategory 
+        productCategoryId="CY-HOOD" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="CAYENNE-AUTO"
+        categoryName="Cayenne Hood"
+        description="Planning group for Cayenne hood"/>
+    <ProductCategoryAttribute 
+        productCategoryId="CY-HOOD"
+        attrName="FACILITY_ID"
+        attrValue="KENITRA"/>
+    
+    <ProductCategory 
+        productCategoryId="CY-TG" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="CAYENNE-AUTO"
+        categoryName="Cayenne Tailgate"
+        description="Planning group for Cayenne tailgate"/>
+    <ProductCategoryAttribute 
+        productCategoryId="CY-TG"
+        attrName="FACILITY_ID"
+        attrValue="MALAGA"/>
+    
+    <ProductCategory 
+        productCategoryId="CY-BUMPER-F" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="CAYENNE-AUTO"
+        categoryName="Cayenne Front Bumper"
+        description="Planning group for Cayenne front bumper"/>
+    <ProductCategoryAttribute 
+        productCategoryId="CY-BUMPER-F"
+        attrName="FACILITY_ID"
+        attrValue="MALAGA"/>
+    
+    <!-- ============================================ -->
+    <!-- GRUPOS DE PLANIFICACIÓN - MACAN -->
+    <!-- ============================================ -->
+    
+    <ProductCategory 
+        productCategoryId="MACAN-FD" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="MACAN-AUTO"
+        categoryName="Macan Front Doors"
+        description="Planning group for Macan front doors"/>
+    <ProductCategoryAttribute 
+        productCategoryId="MACAN-FD"
+        attrName="FACILITY_ID"
+        attrValue="KENITRA"/>
+    
+    <ProductCategory 
+        productCategoryId="MACAN-RD" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="MACAN-AUTO"
+        categoryName="Macan Rear Doors"
+        description="Planning group for Macan rear doors"/>
+    <ProductCategoryAttribute 
+        productCategoryId="MACAN-RD"
+        attrName="FACILITY_ID"
+        attrValue="KENITRA"/>
+    
+    <ProductCategory 
+        productCategoryId="MACAN-TG" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="MACAN-AUTO"
+        categoryName="Macan Tailgate"
+        description="Planning group for Macan tailgate"/>
+    <ProductCategoryAttribute 
+        productCategoryId="MACAN-TG"
+        attrName="FACILITY_ID"
+        attrValue="KENITRA"/>
+    
+    <ProductCategory 
+        productCategoryId="MACAN-HOOD" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="MACAN-AUTO"
+        categoryName="Macan Hood"
+        description="Planning group for Macan hood"/>
+    <ProductCategoryAttribute 
+        productCategoryId="MACAN-HOOD"
+        attrName="FACILITY_ID"
+        attrValue="BARCELONA"/>
+    
+    <!-- ============================================ -->
+    <!-- GRUPOS DE PLANIFICACIÓN - PANAMERA -->
+    <!-- ============================================ -->
+    
+    <ProductCategory 
+        productCategoryId="PANAM-FD" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="PANAMERA-AUTO"
+        categoryName="Panamera Front Doors"
+        description="Planning group for Panamera front doors"/>
+    <ProductCategoryAttribute 
+        productCategoryId="PANAM-FD"
+        attrName="FACILITY_ID"
+        attrValue="BARCELONA"/>
+    
+    <ProductCategory 
+        productCategoryId="PANAM-RD" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="PANAMERA-AUTO"
+        categoryName="Panamera Rear Doors"
+        description="Planning group for Panamera rear doors"/>
+    <ProductCategoryAttribute 
+        productCategoryId="PANAM-RD"
+        attrName="FACILITY_ID"
+        attrValue="BARCELONA"/>
+    
+    <ProductCategory 
+        productCategoryId="PANAM-TG" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="PANAMERA-AUTO"
+        categoryName="Panamera Trunk"
+        description="Planning group for Panamera trunk"/>
+    <ProductCategoryAttribute 
+        productCategoryId="PANAM-TG"
+        attrName="FACILITY_ID"
+        attrValue="PAMPLONA"/>
+    
+    <!-- ============================================ -->
+    <!-- GRUPOS DE PLANIFICACIÓN - AUDI D5 -->
+    <!-- ============================================ -->
+    
+    <ProductCategory 
+        productCategoryId="AUDI-RD" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="AUDI-D5-AUTO"
+        categoryName="Audi D5 Rear Doors"
+        description="Planning group for Audi D5 rear doors"/>
+    <ProductCategoryAttribute 
+        productCategoryId="AUDI-RD"
+        attrName="FACILITY_ID"
+        attrValue="KENITRA"/>
+    
+    <ProductCategory 
+        productCategoryId="AUDI-FD" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="AUDI-D5-AUTO"
+        categoryName="Audi D5 Front Doors"
+        description="Planning group for Audi D5 front doors"/>
+    <ProductCategoryAttribute 
+        productCategoryId="AUDI-FD"
+        attrName="FACILITY_ID"
+        attrValue="PAMPLONA"/>
+    
+    <ProductCategory 
+        productCategoryId="AUDI-HOOD" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="AUDI-D5-AUTO"
+        categoryName="Audi D5 Hood"
+        description="Planning group for Audi D5 hood"/>
+    <ProductCategoryAttribute 
+        productCategoryId="AUDI-HOOD"
+        attrName="FACILITY_ID"
+        attrValue="PAMPLONA"/>
+    
+    <!-- ============================================ -->
+    <!-- GRUPOS DE PLANIFICACIÓN - AUDI Q7 -->
+    <!-- ============================================ -->
+    
+    <ProductCategory 
+        productCategoryId="AUDI-Q7-FD" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="AUDI-Q7-AUTO"
+        categoryName="Audi Q7 Front Doors"
+        description="Planning group for Audi Q7 front doors"/>
+    <ProductCategoryAttribute 
+        productCategoryId="AUDI-Q7-FD"
+        attrName="FACILITY_ID"
+        attrValue="VIGO"/>
+    
+    <ProductCategory 
+        productCategoryId="AUDI-Q7-RD" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="AUDI-Q7-AUTO"
+        categoryName="Audi Q7 Rear Doors"
+        description="Planning group for Audi Q7 rear doors"/>
+    <ProductCategoryAttribute 
+        productCategoryId="AUDI-Q7-RD"
+        attrName="FACILITY_ID"
+        attrValue="VIGO"/>
+    
+    <ProductCategory 
+        productCategoryId="AUDI-Q7-TG" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="AUDI-Q7-AUTO"
+        categoryName="Audi Q7 Tailgate"
+        description="Planning group for Audi Q7 tailgate"/>
+    <ProductCategoryAttribute 
+        productCategoryId="AUDI-Q7-TG"
+        attrName="FACILITY_ID"
+        attrValue="VIGO"/>
+    
+    <!-- ============================================ -->
+    <!-- GRUPOS DE PLANIFICACIÓN - BMW X5 -->
+    <!-- ============================================ -->
+    
+    <ProductCategory 
+        productCategoryId="BMW-X5-FD" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="BMW-X5-AUTO"
+        categoryName="BMW X5 Front Doors"
+        description="Planning group for BMW X5 front doors"/>
+    <ProductCategoryAttribute 
+        productCategoryId="BMW-X5-FD"
+        attrName="FACILITY_ID"
+        attrValue="BARCELONA"/>
+    
+    <ProductCategory 
+        productCategoryId="BMW-X5-RD" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="BMW-X5-AUTO"
+        categoryName="BMW X5 Rear Doors"
+        description="Planning group for BMW X5 rear doors"/>
+    <ProductCategoryAttribute 
+        productCategoryId="BMW-X5-RD"
+        attrName="FACILITY_ID"
+        attrValue="BARCELONA"/>
+    
+    <ProductCategory 
+        productCategoryId="BMW-X5-HOOD" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="BMW-X5-AUTO"
+        categoryName="BMW X5 Hood"
+        description="Planning group for BMW X5 hood"/>
+    <ProductCategoryAttribute 
+        productCategoryId="BMW-X5-HOOD"
+        attrName="FACILITY_ID"
+        attrValue="MALAGA"/>
+    
+    <ProductCategory 
+        productCategoryId="BMW-X5-TG" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="BMW-X5-AUTO"
+        categoryName="BMW X5 Tailgate"
+        description="Planning group for BMW X5 tailgate"/>
+    <ProductCategoryAttribute 
+        productCategoryId="BMW-X5-TG"
+        attrName="FACILITY_ID"
+        attrValue="MALAGA"/>
+    
+    <!-- ============================================ -->
+    <!-- GRUPOS DE PLANIFICACIÓN - BMW SERIE 3 -->
+    <!-- ============================================ -->
+    
+    <ProductCategory 
+        productCategoryId="BMW-S3-FD" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="BMW-SERIE3-AUTO"
+        categoryName="BMW Serie 3 Front Doors"
+        description="Planning group for BMW Serie 3 front doors"/>
+    <ProductCategoryAttribute 
+        productCategoryId="BMW-S3-FD"
+        attrName="FACILITY_ID"
+        attrValue="PAMPLONA"/>
+    
+    <ProductCategory 
+        productCategoryId="BMW-S3-RD" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="BMW-SERIE3-AUTO"
+        categoryName="BMW Serie 3 Rear Doors"
+        description="Planning group for BMW Serie 3 rear doors"/>
+    <ProductCategoryAttribute 
+        productCategoryId="BMW-S3-RD"
+        attrName="FACILITY_ID"
+        attrValue="PAMPLONA"/>
+    
+    <ProductCategory 
+        productCategoryId="BMW-S3-HOOD" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="BMW-SERIE3-AUTO"
+        categoryName="BMW Serie 3 Hood"
+        description="Planning group for BMW Serie 3 hood"/>
+    <ProductCategoryAttribute 
+        productCategoryId="BMW-S3-HOOD"
+        attrName="FACILITY_ID"
+        attrValue="VIGO"/>
+    
+    <ProductCategory 
+        productCategoryId="BMW-S3-TRUNK" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="BMW-SERIE3-AUTO"
+        categoryName="BMW Serie 3 Trunk"
+        description="Planning group for BMW Serie 3 trunk"/>
+    <ProductCategoryAttribute 
+        productCategoryId="BMW-S3-TRUNK"
+        attrName="FACILITY_ID"
+        attrValue="VIGO"/>
+    
+    <!-- ============================================ -->
+    <!-- GRUPOS DE PLANIFICACIÓN - MERCEDES GLE -->
+    <!-- ============================================ -->
+    
+    <ProductCategory 
+        productCategoryId="MERC-GLE-FD" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="MERCEDES-GLE-AUTO"
+        categoryName="Mercedes GLE Front Doors"
+        description="Planning group for Mercedes GLE front doors"/>
+    <ProductCategoryAttribute 
+        productCategoryId="MERC-GLE-FD"
+        attrName="FACILITY_ID"
+        attrValue="MALAGA"/>
+    
+    <ProductCategory 
+        productCategoryId="MERC-GLE-RD" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="MERCEDES-GLE-AUTO"
+        categoryName="Mercedes GLE Rear Doors"
+        description="Planning group for Mercedes GLE rear doors"/>
+    <ProductCategoryAttribute 
+        productCategoryId="MERC-GLE-RD"
+        attrName="FACILITY_ID"
+        attrValue="MALAGA"/>
+    
+    <ProductCategory 
+        productCategoryId="MERC-GLE-HOOD" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="MERCEDES-GLE-AUTO"
+        categoryName="Mercedes GLE Hood"
+        description="Planning group for Mercedes GLE hood"/>
+    <ProductCategoryAttribute 
+        productCategoryId="MERC-GLE-HOOD"
+        attrName="FACILITY_ID"
+        attrValue="BARCELONA"/>
+    
+    <ProductCategory 
+        productCategoryId="MERC-GLE-TG" 
+        productCategoryTypeId="PLANNING_GROUP"
+        primaryParentCategoryId="MERCEDES-GLE-AUTO"
+        categoryName="Mercedes GLE Tailgate"
+        description="Planning group for Mercedes GLE tailgate"/>
+    <ProductCategoryAttribute 
+        productCategoryId="MERC-GLE-TG"
+        attrName="FACILITY_ID"
+        attrValue="BARCELONA"/>
+
+</entity-engine-xml>
